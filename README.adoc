@@ -19,7 +19,6 @@ version of the service.
 ifdef::env-github[]
 ++++
 <p align="center">
-    on github:
     <img src="docs/images/faked_dependency.png">
 </p>
 ++++
@@ -28,8 +27,6 @@ endif::[]
 ifndef::env-github[]
 image::docs/images/faked_dependency.png[a diagram showing a service which dependency has been replaced with a fake,align=center]
 endif::[]
-
-image::docs/images/faked_dependency.png[a diagram showing a service which dependency has been replaced with a fake,align=center]
 
 WARNING: This standalone service can be used for fast tests or as a local resource. As the fake service does not run the
 same code as the service meant to be used in production this productive service has to be thoroughly tested, e.g. using
