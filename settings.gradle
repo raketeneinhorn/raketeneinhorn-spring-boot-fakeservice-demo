@@ -1,0 +1,5 @@
+rootProject.name = 'raketeneinhorn-spring-boot-fakeservice-demo'
+
+include 'fakeservice-demo-base'
+include 'fakeservice-demo-fake'
+include 'fakeservice-demo-service'

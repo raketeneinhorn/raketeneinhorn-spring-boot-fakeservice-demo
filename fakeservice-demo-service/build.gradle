@@ -1,0 +1,11 @@
+plugins {
+    id 'fakeservice-demo.application'
+}
+
+dependencies {
+    implementation project(":fakeservice-demo-base")
+}
+
+application {
+    mainClass = 'com.raketeneinhorn.spring.boot.fakeservice.demo.FakeserviceDemoApplication'
+}
