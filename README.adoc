@@ -18,7 +18,7 @@ version of the service.
 
 ifdef::env-github[]
 ++++
-<p align="center">
+<p style="text-align: center">
     <img src="docs/images/faked_dependency.png">
 </p>
 ++++
