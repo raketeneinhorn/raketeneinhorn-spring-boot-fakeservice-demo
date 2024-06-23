@@ -5,7 +5,7 @@ parts of the service with fake code to eliminate dependencies on external resour
 
 == Motivation
 
-Often a service has a dependency on another resource (other service, database, …) which it needs to be fully functional:
+Often a service has a dependency on another resource (other service, database, …) which it needs to be fully functional.
 
 image::docs/images/coupled_service.png[a diagram showing a service that depends on another service,align=center]
 
