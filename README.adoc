@@ -1,7 +1,7 @@
 = Raketeneinhorn Spring Boot Fakeservice Demo
 
-A small project showing how to automatically create a second standalone version of a Spring Boot service replacing
-parts of the service with fake code to eliminate dependencies on other resources.
+A small project showing how to automatically create a  standalone version of a Spring Boot service replacing parts of
+the service with fake code to eliminate dependencies on other resources.
 
 == Motivation
 
@@ -10,8 +10,8 @@ Often a service has a dependency on another resource (other service, database, â
 image::docs/images/coupled_service.png[a diagram showing a service that depends on another service,align=center]
 
 So it can be cumbersome to use such a dependant service as the dependency of another service as the whole chain of
-dependencies needs to be present. Even as those "coupled" services should be avoided there are situations where this is
-not possible.
+dependencies needs to be present. Even as those "coupled" services should be avoided, there are situations where this is
+hard to achieve.
 
 To address this problem a second service eliminating the dependencies can be automatically created alongside the
 original service by replacing the code that uses the dependencies with fake code that does not have any dependencies,
@@ -30,8 +30,8 @@ image::docs/images/faked_dependency.png[a diagram showing a service were the pre
 endif::[]
 
 WARNING: This standalone service can be used for fast tests or as a local resource. As the fake service does not run the
-same code as the service meant to be used in production the productive service has to be thoroughly tested with its
-dependencies, e.g. using integrative testing.
+same code as the original service the original service has to be thoroughly tested with its dependencies, e.g. using
+integrative testing.
 
 == Project structure
 
