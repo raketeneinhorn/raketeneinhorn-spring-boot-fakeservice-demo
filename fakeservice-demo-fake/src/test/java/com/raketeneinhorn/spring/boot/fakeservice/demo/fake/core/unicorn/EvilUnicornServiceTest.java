@@ -10,10 +10,10 @@ class EvilUnicornServiceTest {
     private final EvilUnicornService evilUnicornServiceUnderTest = new EvilUnicornService();
 
     @Nested
-    class GenerateNumbers {
+    class ReadUnicorns {
 
         @Test
-        void onlyGeneratesOddNumbers() {
+        void containsGrimmhornSchattenzornAmong10() {
             assertThat(evilUnicornServiceUnderTest.readUnicorns())
                 .hasSize(10)
                 .contains("Grimmhorn Schattenzorn");
