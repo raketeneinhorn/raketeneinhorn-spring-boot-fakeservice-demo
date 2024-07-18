@@ -1,4 +1,7 @@
 = Raketeneinhorn Spring Boot Fakeservice Demo
+Benjamin Boksa
+:toc:
+:toclevels: 3
 
 A small project showing how to automatically create a  standalone version of a Spring Boot service replacing parts of
 the service with fake code to eliminate dependencies on other resources.
@@ -35,7 +38,7 @@ integrative testing.
 
 == Project structure
 
-The xref:fakeservice-demo-base[fakeservice-demo-base] subproject contains a typical Spring Boot service that has been
+The xref:fakeservice-demo-base/[fakeservice-demo-base] subproject contains a typical Spring Boot service that has been
 built as a xref:https://docs.gradle.org/current/userguide/java_library_plugin.html[java-library] and contains the
 service code.
 
@@ -59,6 +62,8 @@ interface.
 
 === Technologies
 
+==== Spring Boot
+
 The project combines uses the following Spring Boot mechanisms:
 
 - https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/condition/ConditionalOnMissingBean.html[`@ConditionalOnMissingBean`]
@@ -66,6 +71,8 @@ allows to specify ``@Bean``s that are only created when no other beans of that t
 context.
 - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Primary.html[`@Primary`]
 gives a bean precedence when multiple candidates can be found.
+
+==== Gradle
 
 On the Gradle side of things it uses:
 
