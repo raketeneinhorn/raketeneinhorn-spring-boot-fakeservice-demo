@@ -1,0 +1,61 @@
+= Raketeneinhorn Spring Boot Fakeservice Demo
+
+A small project showing how to automatically create a  standalone version of a Spring Boot service replacing parts of
+the service with fake code to eliminate dependencies on other resources.
+
+== Motivation
+
+Often a service has a dependency on another resource (other service, database, …) which it needs to be fully functional.
+
+image::docs/images/coupled_service.png[a diagram showing a service that depends on another service,align=center]
+
+So it can be cumbersome to use such a dependant service as the dependency of another service as the whole chain of
+dependencies needs to be present. Even as those "coupled" services should be avoided, there are situations where this is
+hard to achieve.
+
+To address this problem a second service eliminating the dependencies can be automatically created alongside the
+original service by replacing the code that uses the dependencies with fake code that does not have any dependencies,
+effectively creating a standalone version of the service.
+
+ifdef::env-github[]
+++++
+<p align="center">
+    <img src="docs/images/faked_dependency.png" alt="">
+</p>
+++++
+endif::[]
+
+ifndef::env-github[]
+image::docs/images/faked_dependency.png[a diagram showing a service were the previous dependency has been replaced with a fake,align=center]
+endif::[]
+
+WARNING: This standalone service can be used for fast tests or as a local resource. As the fake service does not run the
+same code as the original service the original service has to be thoroughly tested with its dependencies, e.g. using
+integrative testing.
+
+== Project structure
+
+The xref:fakeservice-demo-base[fakeservice-demo-base] subproject contains a typical Spring Boot service that has been
+built as a xref:https://docs.gradle.org/current/userguide/java_library_plugin.html[java-library] and contains the
+service code.
+
+The xref:fakeservice-demo-service[fakeservice-demo-service] and xref:fakeservice-demo-fake[fakeservice-demo-fake]
+subprojects are xref:https://docs.gradle.org/current/userguide/application_plugin.html[applications] and are
+used to create the application's docker images.
+
+The
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn[unicorn] package
+contains a typical
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornController.java[controller]
+with service setup. The
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/NiceUnicornService.java[NiceUnicornService]
+is injected into
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornController.java[UnicornController]
+based on the
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornService.java[UnicornService]
+interface.
+
+== License
+
+Raketeneinhorn Spring Boot Fakeservice Demo is Open Source software released under the
+https://www.apache.org/licenses/LICENSE-2.0.html[Apache 2.0 license].

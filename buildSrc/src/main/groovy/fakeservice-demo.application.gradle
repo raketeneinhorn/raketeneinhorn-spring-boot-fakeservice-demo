@@ -1,0 +1,8 @@
+plugins {
+    id 'application'
+    id 'fakeservice-demo.library'
+}
+
+bootJar {
+    enabled = true
+}
