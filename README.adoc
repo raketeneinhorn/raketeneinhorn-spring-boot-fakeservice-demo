@@ -44,16 +44,74 @@ subprojects are xref:https://docs.gradle.org/current/userguide/application_plugi
 used to create the application's docker images.
 
 The
-xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn[unicorn] package
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn[unicorn package]
 contains a typical
 xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornController.java[controller]
 with service setup. The
-xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/NiceUnicornService.java[NiceUnicornService]
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/NiceUnicornService.java[`NiceUnicornService`]
 is injected into
-xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornController.java[UnicornController]
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornController.java[`UnicornController`]
 based on the
-xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornService.java[UnicornService]
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornService.java[`UnicornService`]
 interface.
+
+== How does it work
+
+=== Technologies
+
+The project combines uses the following Spring Boot mechanisms:
+
+- https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/condition/ConditionalOnMissingBean.html[`@ConditionalOnMissingBean`]
+allows to specify ``@Bean``s that are only created when no other beans of that type can be found in the application
+context.
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Primary.html[`@Primary`]
+gives a bean precedence when multiple candidates can be found.
+
+On the Gradle side of things it uses:
+
+- https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html#sec:convention_plugins[Convention plugins]
+to provide the build logic for the three subprojects.
+
+=== Implementation
+
+==== Spring Boot
+
+In
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornConfiguration.java[`UnicornConfiguration`]
+we define `@Bean` of type
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/UnicornService.java[`UnicornService`]
+which only should be created if no UnicornService is found. As the base subproject only contains one class that
+implements the `UnicornService` interface this means that a
+xref:fakeservice-demo-base/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/core/unicorn/NiceUnicornService.java[`NiceUnicornService`]
+is created.
+
+By using `@ConditionalOnMissingBean` we create an extension point: When a different `UnicornService` implementation is
+found in the application context it is used instead of the `NiceUnicornService`.
+
+This leveraged in the xref:fakeservice-demo-fake[fakeservice-demo-fake], which has a custom `UnicornService` class:
+xref:fakeservice-demo-fake/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/fake/core/unicorn/EvilUnicornService.java[`EvilUnicornService`]
+which is marked as `@Primary` will override the `NiceUnicornService` from
+xref:fakeservice-demo-base[fakeservice-demo-base].
+
+Any of the projects can be run with:
+
+ gradle bootRun
+
+==== Docker images
+
+While the xref:fakeservice-demo-base[fakeservice-demo-base] subproject contains the main sourcecode we rely on the other
+two subprojcts to produce
+https://docs.spring.io/spring-boot/reference/packaging/container-images/index.html[container images]:
+
+- xref:fakeservice-demo-fake[fakeservice-demo-fake] creates the fake standalone image and contains the Java code as
+described above.
+- xref:fakeservice-demo-service[fakeservice-demo-service] creates the actual service image to be used in production
+and only contains a dependency on the base project.
+
+Any of the projects can be
+https://docs.spring.io/spring-boot/gradle-plugin/packaging-oci-image.html[packaged as an OCI image] by running:
+
+ gradle bootBuildImage
 
 == License
 

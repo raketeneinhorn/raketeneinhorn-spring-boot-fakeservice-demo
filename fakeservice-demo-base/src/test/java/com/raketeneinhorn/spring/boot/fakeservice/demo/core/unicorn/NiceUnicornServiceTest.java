@@ -10,10 +10,10 @@ class NiceUnicornServiceTest {
     private final NiceUnicornService niceUnicornServiceUnderTest = new NiceUnicornService();
 
     @Nested
-    class GenerateNumbers {
+    class ReadUnicorns {
 
         @Test
-        void onlyGeneratesOddNumbers() {
+        void containsBluetensternLichtblueteAmong10() {
             assertThat(niceUnicornServiceUnderTest.readUnicorns())
                 .hasSize(10)
                 .contains("Blütenstern Lichtblüte");

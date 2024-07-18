@@ -9,7 +9,7 @@ public class UnicornConfiguration {
 
     @ConditionalOnMissingBean(UnicornService.class)
     @Bean
-    UnicornService numbersService() {
+    UnicornService unicornService() {
         return new NiceUnicornService();
     }
 
