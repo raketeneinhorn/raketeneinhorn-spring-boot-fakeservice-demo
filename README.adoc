@@ -42,7 +42,7 @@ The link:./fakeservice-demo-base[fakeservice-demo-base] subproject contains a ty
 built as a xref:https://docs.gradle.org/current/userguide/java_library_plugin.html[java-library] and contains the
 service code.
 
-The xref:fakeservice-demo-service[fakeservice-demo-service] and xref:fakeservice-demo-fake[fakeservice-demo-fake]
+The link:./fakeservice-demo-service[fakeservice-demo-service] and link:./fakeservice-demo-fake[fakeservice-demo-fake]
 subprojects are xref:https://docs.gradle.org/current/userguide/application_plugin.html[applications] and are
 used to create the application's docker images.
 
@@ -95,10 +95,10 @@ is created.
 By using `@ConditionalOnMissingBean` we create an extension point: When a different `UnicornService` implementation is
 found in the application context it is used instead of the `NiceUnicornService`.
 
-This leveraged in the xref:fakeservice-demo-fake[fakeservice-demo-fake], which has a custom `UnicornService` class:
+This leveraged in the link:./fakeservice-demo-fake[fakeservice-demo-fake], which has a custom `UnicornService` class:
 xref:fakeservice-demo-fake/src/main/java/com/raketeneinhorn/spring/boot/fakeservice/demo/fake/core/unicorn/EvilUnicornService.java[`EvilUnicornService`]
 which is marked as `@Primary` will override the `NiceUnicornService` from
-xref:fakeservice-demo-base[fakeservice-demo-base].
+link:./fakeservice-demo-base[fakeservice-demo-base].
 
 Any of the projects can be run with:
 
@@ -106,13 +106,13 @@ Any of the projects can be run with:
 
 ==== Docker images
 
-While the xref:fakeservice-demo-base[fakeservice-demo-base] subproject contains the main sourcecode we rely on the other
+While the link:./fakeservice-demo-base[fakeservice-demo-base] subproject contains the main sourcecode we rely on the other
 two subprojcts to produce
 https://docs.spring.io/spring-boot/reference/packaging/container-images/index.html[container images]:
 
-- xref:fakeservice-demo-fake[fakeservice-demo-fake] creates the fake standalone image and contains the Java code as
+- link:./fakeservice-demo-fake[fakeservice-demo-fake] creates the fake standalone image and contains the Java code as
 described above.
-- xref:fakeservice-demo-service[fakeservice-demo-service] creates the actual service image to be used in production
+- link:./fakeservice-demo-service[fakeservice-demo-service] creates the actual service image to be used in production
 and only contains a dependency on the base project.
 
 Any of the projects can be
