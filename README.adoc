@@ -38,7 +38,7 @@ integrative testing.
 
 == Project structure
 
-The xref:fakeservice-demo-base/[fakeservice-demo-base] subproject contains a typical Spring Boot service that has been
+The link:./fakeservice-demo-base[fakeservice-demo-base] subproject contains a typical Spring Boot service that has been
 built as a xref:https://docs.gradle.org/current/userguide/java_library_plugin.html[java-library] and contains the
 service code.
 
