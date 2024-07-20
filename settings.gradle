@@ -1,4 +1,21 @@
-rootProject.name = 'raketeneinhorn-spring-boot-fakeservice-demo'
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/raketeneinhorn/raketeneinhorn-gradle-version-catalog"
+            credentials {
+                username = settings['gpr.user'] ?: System.getenv("GITHUB_ACTOR")
+                password = settings['gpr.key'] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    versionCatalogs {
+        libs {
+            from('com.raketeneinhorn.gradle:raketeneinhorn-gradle-version-catalog:0.0.1')
+        }
+    }
+}
 
 include 'fakeservice-demo-base'
 include 'fakeservice-demo-fake'
