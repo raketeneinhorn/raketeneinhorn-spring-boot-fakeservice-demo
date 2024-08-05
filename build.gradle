@@ -1,7 +1,16 @@
 plugins {
 	id 'fakeservice-demo.library'
+	id "org.sonarqube" version "4.4.1.3373"
 }
 
 group = 'com.raketeneinhorn.spring.boot.fakeservice.demo'
 version = '0.0.1-SNAPSHOT'
+//version = scmVersion.version
 
+sonar {
+	properties {
+		property "sonar.projectKey", "raketeneinhorn_raketeneinhorn-spring-boot-fakeservice-demo"
+		property "sonar.organization", "raketeneinhorn"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
+}
