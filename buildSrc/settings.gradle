@@ -6,8 +6,4 @@ dependencyResolutionManagement {
     }
 }
 
-include 'fakeservice-demo-base'
-include 'fakeservice-demo-fake'
-include 'fakeservice-demo-service'
-
-apply from: 'settings-repos.gradle'
+apply from: '../settings-repos.gradle'
