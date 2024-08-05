@@ -1,5 +1,5 @@
-var gpr_user = getProperty('gpr.user') ?: System.getenv("GITHUB_ACTOR")
-var gpr_key = getProperty('gpr.key') ?: System.getenv("GITHUB_TOKEN")
+var gpr_user = (hasProperty('gpr.user') ? getProperty('gpr.user') : null) ?: System.getenv("GITHUB_ACTOR")
+var gpr_key = (hasProperty('gpr.key') ? getProperty('gpr.key') : null) ?: System.getenv("GITHUB_TOKEN")
 
 dependencyResolutionManagement {
     repositories {
