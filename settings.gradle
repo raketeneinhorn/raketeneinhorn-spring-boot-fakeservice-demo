@@ -1,3 +1,6 @@
+var gpr_user = getProperty('gpr.user') ?: System.getenv("GITHUB_ACTOR")
+var gpr_key = getProperty('gpr.key') ?: System.getenv("GITHUB_TOKEN")
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
@@ -5,8 +8,8 @@ dependencyResolutionManagement {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/raketeneinhorn/raketeneinhorn-gradle-version-catalog"
             credentials {
-                username = (hasProperty('gpr.user') ? settings['gpr.user'] : null) ?: System.getenv("GITHUB_ACTOR")
-                password = (hasProperty('gpr.key') ? settings['gpr.key'] : null) ?: System.getenv("GITHUB_TOKEN")
+                username = gpr_user
+                password = gpr_key
             }
         }
     }
