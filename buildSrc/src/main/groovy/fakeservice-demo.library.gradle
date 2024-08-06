@@ -1,9 +1,9 @@
 plugins {
     id 'java-library'
-    id 'jacoco'
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
     id 'io.freefair.lombok'
+    id 'jacoco'
 }
 
 java {
@@ -34,7 +34,9 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.required = true
+        xml {
+            enabled true
+        }
     }
 }
 
