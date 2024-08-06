@@ -18,6 +18,8 @@ testCodeCoverageReport {
 	dependsOn test
 }
 
+println testCodeCoverageReport.reports.xml.outputLocation.get().asFile.toString()
+
 sonar {
 	properties {
 		property "sonar.projectKey", "raketeneinhorn_raketeneinhorn-spring-boot-fakeservice-demo"
