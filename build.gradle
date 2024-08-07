@@ -1,7 +1,28 @@
 plugins {
 	id 'fakeservice-demo.library'
+	id 'jacoco-report-aggregation'
+	id "org.sonarqube" version "5.1.0.4882"
 }
 
 group = 'com.raketeneinhorn.spring.boot.fakeservice.demo'
 version = '0.0.1-SNAPSHOT'
+//version = scmVersion.version
 
+dependencies {
+	jacocoAggregation project(':fakeservice-demo-base')
+	jacocoAggregation project(':fakeservice-demo-fake')
+	jacocoAggregation project(':fakeservice-demo-service')
+}
+
+testCodeCoverageReport {
+	dependsOn test
+}
+
+sonar {
+	properties {
+		property "sonar.projectKey", "raketeneinhorn_raketeneinhorn-spring-boot-fakeservice-demo"
+		property "sonar.organization", "raketeneinhorn"
+		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.coverage.jacoco.xmlReportPaths", testCodeCoverageReport.reports.xml.outputLocation.get().asFile.toString()
+	}
+}

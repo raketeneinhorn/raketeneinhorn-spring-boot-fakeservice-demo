@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
     id 'io.freefair.lombok'
+    id 'jacoco'
 }
 
 java {
@@ -29,6 +30,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test
+
+    reports {
+        xml {
+            enabled true
+        }
+    }
 }
 
 bootJar {
