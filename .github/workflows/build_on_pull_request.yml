@@ -33,3 +33,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build jacocoTestReport testCodeCoverageReport sonar --info
 
+      - run: ls -la /home/runner/work/raketeneinhorn-spring-boot-fakeservice-demo/raketeneinhorn-spring-boot-fakeservice-demo/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml
+      - run: cat /home/runner/work/raketeneinhorn-spring-boot-fakeservice-demo/raketeneinhorn-spring-boot-fakeservice-demo/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml
