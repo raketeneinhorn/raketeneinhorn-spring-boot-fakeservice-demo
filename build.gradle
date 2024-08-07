@@ -14,14 +14,6 @@ dependencies {
 	jacocoAggregation project(':fakeservice-demo-service')
 }
 
-jacocoTestReport {
-	dependsOn test
-
-	reports {
-		xml.required = true
-	}
-}
-
 testCodeCoverageReport {
 	dependsOn test
 }
