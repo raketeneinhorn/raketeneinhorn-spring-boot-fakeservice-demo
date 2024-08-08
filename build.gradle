@@ -1,12 +1,12 @@
 plugins {
 	id 'fakeservice-demo.library'
 	id 'jacoco-report-aggregation'
-	id "org.sonarqube" version "5.1.0.4882"
+	alias(libs.plugins.axion.release)
+	alias(libs.plugins.sonarqube)
 }
 
 group = 'com.raketeneinhorn.spring.boot.fakeservice.demo'
-version = '0.0.1-SNAPSHOT'
-//version = scmVersion.version
+version = scmVersion.version
 
 dependencies {
 	jacocoAggregation project(':fakeservice-demo-base')
