@@ -33,3 +33,11 @@ jacocoTestReport {
 bootJar {
     enabled = false
 }
+
+bootRun {
+    systemProperty 'spring.profiles.active', 'local'
+}
+
+bootTestRun {
+    systemProperty 'spring.profiles.active', 'local'
+}
