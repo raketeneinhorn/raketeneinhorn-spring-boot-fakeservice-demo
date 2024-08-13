@@ -1,3 +1,8 @@
 spring:
   application:
     name: fakeservice-demo-base
+
+management:
+  tracing:
+    sampling:
+      probability: 1
