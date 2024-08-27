@@ -5,6 +5,10 @@ plugins {
 	alias(libs.plugins.sonarqube)
 }
 
+scmVersion {
+	versionCreator('versionWithCommitHash')
+}
+
 group = 'com.raketeneinhorn.spring.boot.fakeservice.demo'
 version = scmVersion.version
 
