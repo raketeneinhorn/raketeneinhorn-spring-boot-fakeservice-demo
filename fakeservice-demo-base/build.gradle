@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation 'com.raketeneinhorn.observability.spring.boot.starter:raketeneinhorn-observability-spring-boot-starter:0.2.0'
+    implementation 'com.raketeneinhorn.observability.spring.boot.starter:raketeneinhorn-observability-spring-boot-starter:0.2.1'
     api 'org.springframework.boot:spring-boot-starter-web' // scope 'api' simplifies things but this is OK for a demo
 }
